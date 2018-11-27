@@ -50,7 +50,9 @@ public class KafkaConsumerRunnable implements Runnable {
                         }
                     }
                     long lastOffset = partitionRecords.get(partitionRecords.size() - 1).offset();
+                    System.out.println("lastOffset = " + lastOffset);
                     consumer.commitSync(Collections.singletonMap(partition, new OffsetAndMetadata(lastOffset + 1)));
+                    System.out.println("提交 = " + lastOffset);
                 }
             }
         } catch (WakeupException e) {
